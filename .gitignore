@@ -1,2 +1,4 @@
 # Project exclude paths
+.idea
+Layered-Project.iml
 /out/
