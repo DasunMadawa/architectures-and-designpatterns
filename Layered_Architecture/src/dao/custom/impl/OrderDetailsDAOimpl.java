@@ -1,15 +1,13 @@
-package dao;
+package dao.custom.impl;
 
-import db.DBConnection;
+import dao.SQLUtil;
+import dao.custom.OrderDetailsDAO;
 import model.OrderDetailDTO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderDetailsDAOimpl implements CrudDAO<OrderDetailDTO , String> {
+public class OrderDetailsDAOimpl implements OrderDetailsDAO {
 
     @Override
     public List<OrderDetailDTO> loadAll() throws SQLException, ClassNotFoundException {

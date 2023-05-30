@@ -1,14 +1,15 @@
-package dao;
+package dao.custom.impl;
 
-import db.DBConnection;
+import dao.SQLUtil;
+import dao.custom.CustomerDAO;
 import model.CustomerDTO;
-import view.tdm.CustomerTM;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAOimpl implements CrudDAO<CustomerDTO, String> {
+public class CustomerDAOimpl implements CustomerDAO {
+
     @Override
     public List<CustomerDTO> loadAll() throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT * FROM Customer");

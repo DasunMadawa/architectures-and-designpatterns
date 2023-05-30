@@ -1,14 +1,14 @@
-package dao;
+package dao.custom.impl;
 
-import db.DBConnection;
+import dao.SQLUtil;
+import dao.custom.ItemDAO;
 import model.ItemDTO;
-import view.tdm.ItemTM;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemDAOimpl implements CrudDAO<ItemDTO , String> {
+public class ItemDAOimpl implements ItemDAO {
     @Override
     public List<ItemDTO> loadAll() throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT * FROM Item");

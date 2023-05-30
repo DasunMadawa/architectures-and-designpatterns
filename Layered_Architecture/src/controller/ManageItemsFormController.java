@@ -1,9 +1,10 @@
 package controller;
 
+import bo.custom.BOFactory;
+import bo.custom.ItemBO;
+import bo.custom.impl.ItemBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CrudDAO;
-import dao.ItemDAOimpl;
 import db.DBConnection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -42,7 +43,11 @@ public class ManageItemsFormController {
     public JFXTextField txtUnitPrice;
     public JFXButton btnAddNewItem;
 
-    private CrudDAO<ItemDTO , String> crudDAO = new ItemDAOimpl();
+    private ItemBO itemBO = (ItemBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.ITEM);
+
+    public ManageItemsFormController() throws SQLException, ClassNotFoundException {
+
+    }
 
     public void initialize() {
         tblItems.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -79,7 +84,7 @@ public class ManageItemsFormController {
         try {
             /*Get all items*/
 
-            List<ItemDTO> itemTMList = crudDAO.loadAll();
+            List<ItemDTO> itemTMList = itemBO.loadAllItems();
 
             for (ItemDTO itemDTO : itemTMList) {
                 tblItems.getItems().add(new ItemTM(itemDTO.getCode() , itemDTO.getDescription() ,itemDTO.getUnitPrice() , itemDTO.getQtyOnHand() ));
@@ -184,7 +189,7 @@ public class ManageItemsFormController {
                 }
                 //Save Item
 
-                crudDAO.add(new ItemDTO(code, description, unitPrice, qtyOnHand));
+                itemBO.addItem(new ItemDTO(code, description, unitPrice, qtyOnHand));
 
                 tblItems.getItems().add(new ItemTM(code, description, unitPrice, qtyOnHand));
 
@@ -200,7 +205,7 @@ public class ManageItemsFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
                 }
                 /*Update Item*/
-                crudDAO.update(new ItemDTO(code, description, unitPrice, qtyOnHand));
+                itemBO.updateItem(new ItemDTO(code, description, unitPrice, qtyOnHand));
 
                 ItemTM selectedItem = tblItems.getSelectionModel().getSelectedItem();
                 selectedItem.setDescription(description);
@@ -219,14 +224,14 @@ public class ManageItemsFormController {
 
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        return crudDAO.exist(code);
+        return itemBO.existItem(code);
     }
 
 
     private String generateNewId(){
         String id = null;
         try {
-            id = crudDAO.generateNewId();
+            id = itemBO.generateNewId();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
