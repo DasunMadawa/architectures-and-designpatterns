@@ -1,4 +1,4 @@
-package bo.custom;
+package bo;
 
 import bo.custom.impl.CustomerBOImpl;
 import bo.custom.impl.ItemBOImpl;

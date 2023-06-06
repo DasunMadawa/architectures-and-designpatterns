@@ -1,5 +1,6 @@
 package bo.custom;
 
+import bo.SuperBO;
 import model.CustomerDTO;
 
 import java.sql.SQLException;
