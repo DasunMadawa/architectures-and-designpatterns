@@ -1,10 +1,14 @@
 package controller;
 
-import bo.BOFactory;
+import bo.custom.BOFactory;
 import bo.custom.PurchaseOrderBO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import dto.CustomerDTO;
+import dto.ItemDTO;
+import dto.OrderDetailDTO;
+import dto.PlaceOrderDTO;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
@@ -17,7 +21,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.*;
 import view.tdm.OrderDetailTM;
 
 import java.io.IOException;

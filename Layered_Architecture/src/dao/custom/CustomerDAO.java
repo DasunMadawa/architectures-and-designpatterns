@@ -2,8 +2,8 @@ package dao.custom;
 
 import dao.CrudDAO;
 import dao.SuperDAO;
-import model.CustomerDTO;
+import entity.Customer;
 
-public interface CustomerDAO extends CrudDAO<CustomerDTO , String> , SuperDAO {
+public interface CustomerDAO extends CrudDAO<Customer, String> , SuperDAO {
     // unique methods
 }

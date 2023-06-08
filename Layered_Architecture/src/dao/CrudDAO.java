@@ -1,8 +1,5 @@
 package dao;
 
-import model.CustomerDTO;
-import view.tdm.CustomerTM;
-
 import java.sql.SQLException;
 import java.util.List;
 
